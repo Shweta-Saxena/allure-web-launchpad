@@ -4,121 +4,79 @@ import {
   Box,
   Container,
   Typography,
-  Grid,
+  Grid2 as Grid,
   Card,
   CardContent,
-  useTheme,
 } from '@mui/material';
-import {
-  Speed,
-  Security,
-  Devices,
-  Support,
-  CloudDone,
-  TrendingUp,
-} from '@mui/icons-material';
+import { Speed, Security, Support, Star } from '@mui/icons-material';
 
 const features = [
   {
-    icon: <Speed />,
-    title: 'Lightning Fast',
-    description: 'Optimized performance with cutting-edge technology for blazing fast load times.',
+    icon: <Speed sx={{ fontSize: 48, color: 'primary.main' }} />,
+    title: 'Fast Performance',
+    description: 'Lightning-fast load times and optimized performance for the best user experience.',
   },
   {
-    icon: <Security />,
+    icon: <Security sx={{ fontSize: 48, color: 'primary.main' }} />,
     title: 'Secure & Reliable',
-    description: 'Enterprise-grade security with 99.9% uptime guarantee for your peace of mind.',
+    description: 'Top-notch security measures and reliable infrastructure you can trust.',
   },
   {
-    icon: <Devices />,
-    title: 'Responsive Design',
-    description: 'Perfect experience across all devices - desktop, tablet, and mobile.',
-  },
-  {
-    icon: <Support />,
+    icon: <Support sx={{ fontSize: 48, color: 'primary.main' }} />,
     title: '24/7 Support',
     description: 'Round-the-clock customer support to help you whenever you need assistance.',
   },
   {
-    icon: <CloudDone />,
-    title: 'Cloud Integration',
-    description: 'Seamless cloud integration for scalability and data synchronization.',
-  },
-  {
-    icon: <TrendingUp />,
-    title: 'Analytics & Insights',
-    description: 'Powerful analytics to track performance and gain valuable insights.',
+    icon: <Star sx={{ fontSize: 48, color: 'primary.main' }} />,
+    title: 'Premium Quality',
+    description: 'High-quality solutions crafted with attention to detail and excellence.',
   },
 ];
 
 const FeaturesSection = () => {
-  const theme = useTheme();
-
   return (
-    <Box sx={{ py: 10, background: 'linear-gradient(180deg, #fafafa 0%, #ffffff 100%)' }}>
+    <Box sx={{ py: 8, backgroundColor: 'background.default' }}>
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
+        <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography
             variant="h2"
             sx={{
-              mb: 2,
+              mb: 3,
               background: 'linear-gradient(45deg, #667eea 30%, #764ba2 90%)',
               backgroundClip: 'text',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
           >
-            Why Choose Us?
+            Why Choose Us
           </Typography>
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            sx={{ maxWidth: 600, mx: 'auto', lineHeight: 1.6 }}
-          >
-            We provide exceptional features that make your digital journey smooth and successful
+          <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
+            We provide exceptional services that help your business grow and succeed in today's competitive market.
           </Typography>
         </Box>
 
         <Grid container spacing={4}>
           {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid xs={12} sm={6} md={3} key={index}>
               <Card
                 sx={{
                   height: '100%',
-                  background: 'white',
-                  border: '1px solid #f0f0f0',
-                  borderRadius: 3,
-                  transition: 'all 0.3s ease',
+                  textAlign: 'center',
+                  transition: 'transform 0.3s ease',
                   '&:hover': {
                     transform: 'translateY(-8px)',
-                    boxShadow: '0 20px 40px rgba(102, 126, 234, 0.15)',
-                    border: '1px solid rgba(102, 126, 234, 0.2)',
+                    boxShadow: 6,
                   },
                 }}
               >
-                <CardContent sx={{ p: 4, textAlign: 'center' }}>
-                  <Box
-                    sx={{
-                      width: 80,
-                      height: 80,
-                      borderRadius: '50%',
-                      background: 'linear-gradient(45deg, #667eea 30%, #764ba2 90%)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      mx: 'auto',
-                      mb: 3,
-                      color: 'white',
-                    }}
-                  >
-                    {React.cloneElement(feature.icon, { fontSize: 'large' })}
+                <CardContent sx={{ p: 4 }}>
+                  <Box sx={{ mb: 3 }}>
+                    {feature.icon}
                   </Box>
-                  
-                  <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
+                  <Typography variant="h5" sx={{ mb: 2, fontWeight: 600 }}>
                     {feature.title}
                   </Typography>
-                  
-                  <Typography color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                  <Typography color="text.secondary">
                     {feature.description}
                   </Typography>
                 </CardContent>
