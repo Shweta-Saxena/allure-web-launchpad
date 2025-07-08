@@ -1,10 +1,9 @@
-
 import React from 'react';
 import {
   Box,
   Container,
   Typography,
-  Grid2 as Grid,
+  Grid,
   Card,
   CardContent,
 } from '@mui/material';
@@ -57,7 +56,7 @@ const FeaturesSection = () => {
 
         <Grid container spacing={4}>
           {features.map((feature, index) => (
-            <Grid xs={12} sm={6} md={3} key={index}>
+            <Grid item xs={12} sm={6} md={3} key={index}>
               <Card
                 sx={{
                   height: '100%',

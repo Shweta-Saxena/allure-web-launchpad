@@ -1,11 +1,10 @@
-
 import React, { useState } from 'react';
 import {
   Box,
   Container,
   Typography,
   Button,
-  Grid2 as Grid,
+  Grid,
   Card,
   CardContent,
   TextField,
@@ -65,7 +64,7 @@ const HeroSection = () => {
     >
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
         <Grid container spacing={4} alignItems="center">
-          <Grid xs={12} md={6}>
+          <Grid item xs={12} md={6}>
             <Box sx={{ color: 'white', textAlign: isMobile ? 'center' : 'left' }}>
               <Typography
                 variant="h1"
@@ -104,7 +103,7 @@ const HeroSection = () => {
             </Box>
           </Grid>
 
-          <Grid xs={12} md={6}>
+          <Grid item xs={12} md={6}>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <Card
                 sx={{
@@ -197,7 +196,7 @@ const HeroSection = () => {
                         </Box>
 
                         <Grid container spacing={2} sx={{ mb: 3 }}>
-                          <Grid xs={6}>
+                          <Grid item xs={6}>
                             <Field
                               as={TextField}
                               fullWidth
@@ -219,7 +218,7 @@ const HeroSection = () => {
                               Date
                             </Typography>
                           </Grid>
-                          <Grid xs={6}>
+                          <Grid item xs={6}>
                             <Field
                               as={TextField}
                               fullWidth

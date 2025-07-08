@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   Box,
@@ -6,7 +5,7 @@ import {
   Typography,
   TextField,
   Button,
-  Grid2 as Grid,
+  Grid,
   Card,
   CardContent,
 } from '@mui/material';
@@ -49,7 +48,7 @@ const ContactSection = () => {
         </Typography>
 
         <Grid container spacing={4}>
-          <Grid xs={12} md={6}>
+          <Grid item xs={12} md={6}>
             <Card sx={{ height: '100%', boxShadow: 3 }}>
               <CardContent sx={{ p: 4 }}>
                 <Typography variant="h5" sx={{ mb: 3, fontWeight: 600 }}>
@@ -69,7 +68,7 @@ const ContactSection = () => {
                   {({ errors, touched, isSubmitting }) => (
                     <Form>
                       <Grid container spacing={3}>
-                        <Grid xs={12} sm={6}>
+                        <Grid item xs={12} sm={6}>
                           <Field
                             as={TextField}
                             fullWidth
@@ -80,7 +79,7 @@ const ContactSection = () => {
                           />
                         </Grid>
                         
-                        <Grid xs={12} sm={6}>
+                        <Grid item xs={12} sm={6}>
                           <Field
                             as={TextField}
                             fullWidth
@@ -92,7 +91,7 @@ const ContactSection = () => {
                           />
                         </Grid>
                         
-                        <Grid xs={12}>
+                        <Grid item xs={12}>
                           <Field
                             as={TextField}
                             fullWidth
@@ -103,7 +102,7 @@ const ContactSection = () => {
                           />
                         </Grid>
                         
-                        <Grid xs={12}>
+                        <Grid item xs={12}>
                           <Field
                             as={TextField}
                             fullWidth
@@ -116,7 +115,7 @@ const ContactSection = () => {
                           />
                         </Grid>
                         
-                        <Grid xs={12}>
+                        <Grid item xs={12}>
                           <Button
                             type="submit"
                             variant="contained"
@@ -141,7 +140,7 @@ const ContactSection = () => {
             </Card>
           </Grid>
 
-          <Grid xs={12} md={6}>
+          <Grid item xs={12} md={6}>
             <Box sx={{ pl: { md: 4 } }}>
               <Typography variant="h5" sx={{ mb: 3, fontWeight: 600 }}>
                 Contact Information
