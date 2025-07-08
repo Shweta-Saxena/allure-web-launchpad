@@ -6,26 +6,34 @@ import {
   Box,
   Container,
   Typography,
-  Grid,
   TextField,
   Button,
+  Grid,
   Paper,
 } from '@mui/material';
 
 const ContactSchema = Yup.object().shape({
-  name: Yup.string().required('Name is required'),
-  email: Yup.string().email('Invalid email').required('Email is required'),
-  phone: Yup.string().required('Phone number is required'),
-  pickup: Yup.string().required('Pickup location is required'),
-  dropoff: Yup.string().required('Drop-off location is required'),
-  date: Yup.string().required('Date is required'),
-  time: Yup.string().required('Time is required'),
-  message: Yup.string(),
+  name: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+  phone: Yup.string()
+    .min(10, 'Too Short!')
+    .required('Required'),
+  subject: Yup.string()
+    .min(5, 'Too Short!')
+    .required('Required'),
+  message: Yup.string()
+    .min(10, 'Too Short!')
+    .required('Required'),
 });
 
 const ContactSection = () => {
   return (
-    <Box sx={{ py: 8, backgroundColor: '#f8f9fa' }}>
+    <Box sx={{ py: 8, backgroundColor: '#f5f5f5' }}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography
@@ -38,41 +46,37 @@ const ContactSection = () => {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            Book Your Ride
+            Get In Touch
           </Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
-            Experience luxury transportation with our premium chauffeur service
+            Ready to experience premium chauffeur services? Contact us today for your transportation needs.
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
-          <Grid xs={12} md={6}>
+        <Grid container spacing={4} justifyContent="center">
+          <Grid item xs={12} md={8}>
             <Paper sx={{ p: 4, borderRadius: 3 }}>
-              <Typography variant="h5" sx={{ mb: 3, fontWeight: 600 }}>
-                Quick Booking
-              </Typography>
-              
               <Formik
                 initialValues={{
                   name: '',
                   email: '',
                   phone: '',
-                  pickup: '',
-                  dropoff: '',
-                  date: '',
-                  time: '',
+                  subject: '',
                   message: '',
                 }}
                 validationSchema={ContactSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                  console.log(values);
-                  setSubmitting(false);
+                onSubmit={(values, { setSubmitting, resetForm }) => {
+                  console.log('Form values:', values);
+                  setTimeout(() => {
+                    setSubmitting(false);
+                    resetForm();
+                  }, 400);
                 }}
               >
-                {({ isSubmitting, handleChange, handleBlur, values }) => (
+                {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
                   <Form>
                     <Grid container spacing={3}>
-                      <Grid xs={12} sm={6}>
+                      <Grid item xs={12} sm={6}>
                         <TextField
                           fullWidth
                           name="name"
@@ -80,12 +84,12 @@ const ContactSection = () => {
                           value={values.name}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          variant="outlined"
+                          error={touched.name && Boolean(errors.name)}
+                          helperText={touched.name && errors.name}
                         />
-                        <ErrorMessage name="name" component="div" style={{ color: 'red', fontSize: '0.8rem' }} />
                       </Grid>
-                      
-                      <Grid xs={12} sm={6}>
+
+                      <Grid item xs={12} sm={6}>
                         <TextField
                           fullWidth
                           name="email"
@@ -94,12 +98,12 @@ const ContactSection = () => {
                           value={values.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          variant="outlined"
+                          error={touched.email && Boolean(errors.email)}
+                          helperText={touched.email && errors.email}
                         />
-                        <ErrorMessage name="email" component="div" style={{ color: 'red', fontSize: '0.8rem' }} />
                       </Grid>
-                      
-                      <Grid xs={12}>
+
+                      <Grid item xs={12}>
                         <TextField
                           fullWidth
                           name="phone"
@@ -107,38 +111,40 @@ const ContactSection = () => {
                           value={values.phone}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          variant="outlined"
+                          error={touched.phone && Boolean(errors.phone)}
+                          helperText={touched.phone && errors.phone}
                         />
-                        <ErrorMessage name="phone" component="div" style={{ color: 'red', fontSize: '0.8rem' }} />
-                      </Grid>
-                      
-                      <Grid xs={12}>
-                        <TextField
-                          fullWidth
-                          name="pickup"
-                          label="Pickup Location"
-                          value={values.pickup}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          variant="outlined"
-                        />
-                        <ErrorMessage name="pickup" component="div" style={{ color: 'red', fontSize: '0.8rem' }} />
-                      </Grid>
-                      
-                      <Grid xs={12}>
-                        <TextField
-                          fullWidth
-                          name="dropoff"
-                          label="Drop-off Location"
-                          value={values.dropoff}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          variant="outlined"
-                        />
-                        <ErrorMessage name="dropoff" component="div" style={{ color: 'red', fontSize: '0.8rem' }} />
                       </Grid>
 
-                      <Grid xs={12}>
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          name="subject"
+                          label="Subject"
+                          value={values.subject}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={touched.subject && Boolean(errors.subject)}
+                          helperText={touched.subject && errors.subject}
+                        />
+                      </Grid>
+
+                      <Grid item xs={12}>
+                        <TextField
+                          fullWidth
+                          name="message"
+                          label="Message"
+                          multiline
+                          rows={4}
+                          value={values.message}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          error={touched.message && Boolean(errors.message)}
+                          helperText={touched.message && errors.message}
+                        />
+                      </Grid>
+
+                      <Grid item xs={12}>
                         <Button
                           type="submit"
                           fullWidth
@@ -152,7 +158,7 @@ const ContactSection = () => {
                             },
                           }}
                         >
-                          Book Now
+                          Send Message
                         </Button>
                       </Grid>
                     </Grid>
@@ -160,50 +166,6 @@ const ContactSection = () => {
                 )}
               </Formik>
             </Paper>
-          </Grid>
-
-          <Grid xs={12} md={6}>
-            <Box sx={{ pl: { md: 4 } }}>
-              <Typography variant="h5" sx={{ mb: 3, fontWeight: 600 }}>
-                Why Choose Oxford Global?
-              </Typography>
-              
-              <Box sx={{ mb: 3 }}>
-                <Typography variant="h6" sx={{ mb: 1, fontWeight: 500 }}>
-                  Professional Chauffeurs
-                </Typography>
-                <Typography color="text.secondary">
-                  Experienced, licensed, and vetted drivers ensuring your safety and comfort.
-                </Typography>
-              </Box>
-              
-              <Box sx={{ mb: 3 }}>
-                <Typography variant="h6" sx={{ mb: 1, fontWeight: 500 }}>
-                  Luxury Fleet
-                </Typography>
-                <Typography color="text.secondary">
-                  Premium vehicles maintained to the highest standards for your journey.
-                </Typography>
-              </Box>
-              
-              <Box sx={{ mb: 3 }}>
-                <Typography variant="h6" sx={{ mb: 1, fontWeight: 500 }}>
-                  24/7 Service
-                </Typography>
-                <Typography color="text.secondary">
-                  Available round the clock for all your transportation needs.
-                </Typography>
-              </Box>
-              
-              <Box>
-                <Typography variant="h6" sx={{ mb: 1, fontWeight: 500 }}>
-                  Competitive Rates
-                </Typography>
-                <Typography color="text.secondary">
-                  Transparent pricing with no hidden fees, premium service at fair rates.
-                </Typography>
-              </Box>
-            </Box>
           </Grid>
         </Grid>
       </Container>

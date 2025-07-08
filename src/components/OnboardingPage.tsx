@@ -10,7 +10,6 @@ import {
   Button,
   Paper,
   Divider,
-  IconButton,
 } from '@mui/material';
 import { Apple, Google, Facebook } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
@@ -33,20 +32,14 @@ const OnboardingPage = () => {
         minHeight: '100vh',
         backgroundColor: '#f5f5f5',
         display: 'flex',
-        alignItems: 'center',
-        py: 4,
+        flexDirection: 'column',
       }}
     >
       {/* Header */}
       <Box
         sx={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
           background: 'rgba(0, 0, 0, 0.9)',
           backdropFilter: 'blur(10px)',
-          zIndex: 1000,
           py: 2,
         }}
       >
@@ -82,66 +75,69 @@ const OnboardingPage = () => {
               </Typography>
             </Box>
             
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+              <Button sx={{ color: 'white', textTransform: 'none' }}>Services</Button>
+              <Button sx={{ color: 'white', textTransform: 'none' }}>About Us</Button>
+              <Button sx={{ color: 'white', textTransform: 'none' }}>For chauffeurs</Button>
               <Button
-                onClick={() => navigate('/')}
-                sx={{ color: 'white' }}
+                variant="outlined"
+                sx={{
+                  color: 'white',
+                  borderColor: 'white',
+                  borderRadius: 2,
+                  px: 3,
+                  textTransform: 'none',
+                }}
               >
-                Back to Home
+                Book
               </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  background: 'linear-gradient(45deg, #667eea 30%, #764ba2 90%)',
+                  borderRadius: 2,
+                  px: 3,
+                  textTransform: 'none',
+                }}
+              >
+                Sign Up
+              </Button>
+              <Box
+                sx={{
+                  width: 24,
+                  height: 16,
+                  backgroundImage: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 60 30\'%3E%3Cclippath id=\'t\'%3E%3Cpath d=\'m30,15h30v15zv15h-30zh-30v-15zv-15h30z\'/%3E%3C/clippath%3E%3Cpath d=\'m0,0v30h60v-30z\' fill=\'%23012169\'/%3E%3Cpath d=\'m0,0 60,30m0-30-60,30\' stroke=\'%23fff\' stroke-width=\'6\'/%3E%3Cpath d=\'m0,0 60,30m0-30-60,30\' clip-path=\'url(%23t)\' stroke=\'%23c8102e\' stroke-width=\'4\'/%3E%3Cpath d=\'m30,0v30m-30-15h60\' stroke=\'%23fff\' stroke-width=\'10\'/%3E%3Cpath d=\'m30,0v30m-30-15h60\' stroke=\'%23c8102e\' stroke-width=\'6\'/%3E%3C/svg%3E")',
+                  backgroundSize: 'cover',
+                  borderRadius: 0.5,
+                }}
+              />
             </Box>
           </Box>
         </Container>
       </Box>
 
-      <Container maxWidth="lg" sx={{ mt: 8 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: 'calc(100vh - 120px)' }}>
-          <Box sx={{ display: 'flex', maxWidth: 1000, width: '100%', borderRadius: 3, overflow: 'hidden', boxShadow: 3 }}>
-            {/* Left side - Image/Branding */}
-            <Box
-              sx={{
-                flex: 1,
-                background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url("/lovable-uploads/3687a8c1-9cb2-42f1-bdea-de50ec10c79b.png")',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                display: { xs: 'none', md: 'flex' },
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                color: 'white',
-                p: 4,
-              }}
-            >
-              <Typography variant="h3" sx={{ mb: 2, fontWeight: 700, textAlign: 'center' }}>
-                Welcome to Oxford Global
-              </Typography>
-              <Typography variant="h6" sx={{ textAlign: 'center', opacity: 0.9 }}>
-                Premium chauffeur services for discerning clients
-              </Typography>
-            </Box>
-
-            {/* Right side - Login Form */}
+      {/* Main Content */}
+      <Box sx={{ flex: 1, display: 'flex', alignItems: 'center', py: 8 }}>
+        <Container maxWidth="sm">
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <Paper
               sx={{
-                flex: 1,
                 p: 6,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                minHeight: '600px',
+                borderRadius: 3,
+                maxWidth: 480,
+                width: '100%',
+                textAlign: 'center',
               }}
             >
-              <Box sx={{ mb: 4, textAlign: 'center' }}>
-                <Typography variant="h4" sx={{ mb: 2, fontWeight: 600 }}>
-                  Log in to continue
-                </Typography>
-                <Typography color="text.secondary" sx={{ mb: 1 }}>
-                  You'll be able to easily book and manage rides,
-                </Typography>
-                <Typography color="text.secondary">
-                  and get ride status updates on the day of travel.
-                </Typography>
-              </Box>
+              <Typography variant="h4" sx={{ mb: 2, fontWeight: 600 }}>
+                Log in to continue
+              </Typography>
+              <Typography color="text.secondary" sx={{ mb: 1 }}>
+                You'll be able to easily book and manage rides,
+              </Typography>
+              <Typography color="text.secondary" sx={{ mb: 4 }}>
+                and get ride status updates on the day of travel.
+              </Typography>
 
               <Formik
                 initialValues={{
@@ -151,10 +147,9 @@ const OnboardingPage = () => {
                 validationSchema={LoginSchema}
                 onSubmit={(values, { setSubmitting }) => {
                   console.log('Login values:', values);
-                  // Handle login logic here
                   setTimeout(() => {
                     setSubmitting(false);
-                    navigate('/'); // Redirect to home after login
+                    navigate('/');
                   }, 1000);
                 }}
               >
@@ -301,8 +296,8 @@ const OnboardingPage = () => {
               </Formik>
             </Paper>
           </Box>
-        </Box>
-      </Container>
+        </Container>
+      </Box>
     </Box>
   );
 };

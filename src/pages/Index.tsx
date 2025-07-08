@@ -3,6 +3,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import Navbar from '../components/Navbar';
 import HeroSection from '../components/HeroSection';
+import AboutSection from '../components/AboutSection';
 import FeaturesSection from '../components/FeaturesSection';
 import ServicesSection from '../components/ServicesSection';
 import ContactSection from '../components/ContactSection';
@@ -13,6 +14,7 @@ const Index = () => {
     <Box sx={{ minHeight: '100vh' }}>
       <Navbar />
       <HeroSection />
+      <AboutSection />
       <FeaturesSection />
       <ServicesSection />
       <ContactSection />
