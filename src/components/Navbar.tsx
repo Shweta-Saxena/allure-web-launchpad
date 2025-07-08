@@ -147,6 +147,7 @@ const Navbar = () => {
               
               <Button
                 variant="contained"
+                onClick={() => navigate('/onboarding')}
                 sx={{
                   background: 'linear-gradient(45deg, #667eea 30%, #764ba2 90%)',
                   borderRadius: 2,
